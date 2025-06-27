@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard | Family Survey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+  <div class="dashboard">
+    <div class="profile">
+      <div>
+        <p><strong>Username:</strong> <span id="displayUsername">user123</span></p>
+        <p><strong>Email:</strong> <span id="displayEmail">jaipur@example.com</span></p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box"><strong>Total Survey</strong><br>10</div>
+      <div class="stat-box"><strong>Total Population</strong><br>45</div>
+      <div class="stat-box"><strong>Male</strong><br>25</div>
+      <div class="stat-box"><strong>Female</strong><br>20</div>
+    </div>
+
+    <div class="search-box">
+      <input type="text" placeholder="Search by name/location" />
+      <button>🔍</button>
+    </div>
+
+    <p style="margin-top: 10px;">Not Found</p>
+  </div>
+
+  <div class="bottom-menu">
+    <button onclick="location.href='../dashboard/dashboard.html'">🏠 Home</button>
+    <button onclick="location.href='../addFamily/family_form_page.html'">➕ Add</button>
+    <button onclick="location.href='../showSurvey/show_survey.html'">📄 Show</button>
+    <button id="logoutBtn">🚪 Logout</button>
+  </div>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>
