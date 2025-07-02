@@ -1,6 +1,6 @@
 {
   "name": "Family Survey",
-  "short_name": "FS",
+  "short_name": "FS2",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
