@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up | Family Survey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create your Family Survey account to get started">
+  <meta name="language" content="en">
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+  <main class="container">
+    <h2>Sign Up</h2>
+    <form id="signupForm" novalidate>
+      <label for="firstName" class="visually-hidden">First Name</label>
+      <input type="text" id="firstName" placeholder="First Name" required />
+
+      <label for="lastName" class="visually-hidden">Last Name</label>
+      <input type="text" id="lastName" placeholder="Last Name" required />
+
+      <label for="signupEmail" class="visually-hidden">Email</label>
+      <input type="email" id="signupEmail" placeholder="Email" required />
+
+      <div style="position: relative; width: 100%;">
+        <label for="signupPassword" class="visually-hidden">Password</label>
+        <input
+          type="password"
+          id="signupPassword"
+          placeholder="Password (min 6 characters)"
+          required
+          minlength="6"
+          style="padding-right: 40px; width: 100%; box-sizing: border-box;"
+        >
+        <img
+          id="toggleSignupPassword"
+          src="../Images/eye-open.png"
+          alt="Show Password"
+          role="button"
+          tabindex="0"
+          aria-label="Show or hide password"
+          style="
+            position: absolute;
+            right: 15px;
+            top: 39%;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            object-fit: contain;
+          "
+        />
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p>Already have an account? <a href="../index.html">Login</a></p>
+  </main>
+
+  <!-- Toast Message -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+  <script type="module" src="signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+/* 🌐 Reset & Base */
+body {
+  margin: 0;
+  padding-bottom: 80px;
+  font-family: "Segoe UI", sans-serif;
+  background: #f9f9f9;
+  color: #333;
+}
+
+/* 🔷 Title Bar */
+h2 {
+  background: #2196f3;
+  color: white;
+  font-size: 20px;
+  padding: 15px;
+  margin: 0;
+  text-align: center;
+}
+
+/* 🔍 Search */
+.search-bar {
+  padding: 10px 16px;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.search-bar input:focus {
+  border-color: #2196f3;
+}
+
+/* 📦 Family Cards */
+#familyList {
+  padding: 0 16px;
+}
+
+.member-card {
+  background: #fff;
+  margin: 10px auto;
+  max-width: 500px;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+
+.member-card:hover {
+  transform: translateY(-2px);
+}
+
+.member-card p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* 🔽 Toggle Button */
+.toggleDetailsBtn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  background: #1976d2;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.toggleDetailsBtn:hover {
+  background-color: #0d47a1;
+}
+
+/* ➕ Extra Details */
+.more-details {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-left: 3px solid #1976d2;
+  background: #f1f8ff;
+  border-radius: 4px;
+  display: none;
+  text-align: left;
+}
+
+/* 🎯 Actions */
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.action-row button {
+  background: #1976d2;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.action-row button:hover {
+  background: #0d47a1;
+}
+
+/* ⚙️ Hidden Buttons (Edit/Delete) */
+.action-buttons {
+  display: none;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.action-buttons button {
+  background: #e53935;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.action-buttons button:hover {
+  background-color: #b71c1c;
+}
+
+/* 🔄 Loader */
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #1976d2;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 30px auto 10px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* 🧾 Toast */
+.toast, #toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background-color: #323232;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+}
+
+.toast.show, #toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0px);
+  pointer-events: auto;
+}
+
+/* 📱 Bottom Navigation */
+.bottom-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #e0e0e0;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top: 1px solid #ccc;
+  z-index: 1000;
+}
+
+.bottom-menu button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.bottom-menu button:hover {
+  color: #1976d2;
+}
+
+/* 📱 Responsive */
+@media (max-width: 480px) {
+  .search-bar {
+    padding: 8px;
+  }
+
+  .member-card {
+    padding: 14px;
+  }
+
+  .toggleDetailsBtn,
+  .action-row button,
+  .action-buttons button {
+    font-size: 13px;
+    padding: 7px 10px;
+  }
+
+  .bottom-menu button {
+    font-size: 14px;
+  }
+}

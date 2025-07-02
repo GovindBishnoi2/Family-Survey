@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="सदस्य जोड़ें - परिवार सर्वे एप्लिकेशन">
+  <meta http-equiv="Content-Language" content="hi">
+  <title>परिवार सदस्य जोड़ें</title>
+  <link rel="stylesheet" href="add_member.css">
+</head>
+<body>
+  <div class="container">
+    <form id="memberForm" class="card" novalidate>
+      <h2 style="text-align:center;">👤 सदस्य विवरण</h2>
+
+      <label for="aadhaar">आधार नंबर:</label>
+      <input type="tel" id="aadhaar" pattern="\d{12}" maxlength="12" placeholder="12-अंकों का आधार नंबर" required>
+
+      <label for="member_name">नाम:</label>
+      <input type="text" id="member_name" placeholder="सदस्य का नाम" required>
+
+      <label for="father_name">पिता का नाम:</label>
+      <input type="text" id="father_name" placeholder="पिता का नाम" required>
+
+      <label for="dob">जन्म तिथि:</label>
+      <input type="date" id="dob" required>
+
+      <fieldset style="border:none;">
+        <legend>लिंग:</legend>
+        <label><input type="radio" name="gender" id="gender_male" value="Male" required> पुरुष</label>
+        <label><input type="radio" name="gender" id="gender_female" value="Female" required> महिला</label>
+      </fieldset>
+
+      <fieldset style="border:none;">
+        <legend>वैवाहिक स्थिति:</legend>
+        <label><input type="radio" name="marital" id="married" value="Married" required> विवाहित</label>
+        <label><input type="radio" name="marital" id="unmarried" value="Unmarried" required> अविवाहित</label>
+      </fieldset>
+
+      <div style="text-align:center; margin-top:20px;">
+        <button type="submit" class="btn-scan">💾 सेव करें</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 🔔 Toast Message -->
+  <div id="toast" role="alert" aria-live="assertive"></div>
+
+  <!-- 🔻 बॉटम नेविगेशन -->
+  <div class="bottom-menu">
+    <button onclick="location.href='../dashboard/dashboard.html'">
+      <span>🏠</span>
+      <small>Home</small>
+    </button>
+    <button onclick="location.href='../addFamily/family_form_page.html'">
+      <span>➕</span>
+      <small>Add</small>
+    </button>
+    <button onclick="location.href='../showSurvey/show_survey.html'">
+      <span>📄</span>
+      <small>Show</small>
+    </button>
+  </div>
+
+  <noscript>
+    <p style="color: red; text-align: center;">⚠️ इस पेज को चलाने के लिए JavaScript आवश्यक है।</p>
+  </noscript>
+
+  <script type="module" src="add_member.js"></script>
+</body>
+</html>

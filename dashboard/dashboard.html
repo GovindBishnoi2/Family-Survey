@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard | Family Survey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <main class="dashboard">
+    <!-- 👤 User Info -->
+    <section class="profile">
+      <div>
+        <p><strong>Username:</strong> <span id="displayUsername">--</span></p>
+        <p><strong>Email:</strong> <span id="displayEmail">--</span></p>
+      </div>
+      <img id="user-avatar" src="default-avatar.png" alt="User Avatar" onerror="this.src='default-avatar.png'" />
+    </section>
+
+    <!-- 🔔 Toast -->
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+    <!-- 📊 Stats -->
+    <section class="stats" style="margin-top: 20px;">
+      <div class="stat-box"><strong>Total Families</strong><br><span id="totalFamilies">0</span></div>
+      <div class="stat-box"><strong>Total Members</strong><br><span id="totalMembers">0</span></div>
+      <div class="stat-box"><strong>Male</strong><br><span id="totalMales">0</span></div>
+      <div class="stat-box"><strong>Female</strong><br><span id="totalFemales">0</span></div>
+    </section>
+
+    <!-- 🔍 Search -->
+    <section class="search-box">
+      <input type="text" id="searchInput" placeholder="नाम या जन आधार से खोजें..." />
+      <button id="clearBtn" title="Clear Search">❌</button>
+    </section>
+
+    <!-- ⌕ Search Results -->
+    <section id="searchResults" style="margin-top: 20px;"></section>
+
+    <!-- ⏳ Loader -->
+    <div id="loader" class="loader" role="status" aria-live="polite"></div>
+    <p id="loadingText" class="loading-text">🔄 डेटा लोड हो रहा है...</p>
+  </main>
+
+  <!-- ⬇️ Bottom Menu -->
+  <nav class="bottom-menu">
+    <button onclick="location.href='../dashboard/dashboard.html'">🏠 Home</button>
+    <button onclick="location.href='../addFamily/family_form_page.html'">➕ Add</button>
+    <button onclick="location.href='../showSurvey/show_survey.html'">📄 Show</button>
+    <button id="logoutBtn">🚪 Logout</button>
+  </nav>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

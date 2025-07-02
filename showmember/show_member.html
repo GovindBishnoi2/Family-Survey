@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>सदस्य सूची</title>
+  <link rel="stylesheet" href="show_member.css" />
+</head>
+<body>
+
+  <h2>सदस्य सूची</h2>
+
+  <div class="search-bar" style="padding: 10px 16px;">
+    <input type="text" id="searchInput" placeholder="नाम या आधार खोजें..." style="width: 100%; padding: 8px; font-size: 16px;" />
+  </div>
+
+  <div id="memberList">
+    <div class="loader"></div>
+    <p class="loading-text">🔄 डेटा लोड हो रहा है...</p>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ⬇️ Bottom Navigation -->
+  <div class="bottom-menu">
+    <button onclick="location.href='../dashboard/dashboard.html'">🏠 Home</button>
+    <button onclick="history.back()">➕ Add</button>
+    <button onclick="location.href='../showSurvey/show_survey.html'">📄 Show</button>
+  </div>
+
+  <script type="module" src="show_member.js"></script>
+</body>
+</html>

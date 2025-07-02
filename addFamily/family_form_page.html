@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>परिवार जोड़ें</title>
+  <link rel="stylesheet" href="family_style.css" />
+  <style>
+    .visually-hidden {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>परिवार जोड़ें</h2>
+
+    <form id="familyForm">
+      <label for="familyName" class="visually-hidden">परिवार का नाम</label>
+      <input type="text" id="familyName" placeholder="परिवार का नाम" required />
+
+      <label for="janAadhar" class="visually-hidden">जन आधार नंबर</label>
+      <input type="text" id="janAadhar" placeholder="जन आधार नंबर (10 अंक)" maxlength="10" required />
+
+      <label for="mobile" class="visually-hidden">मोबाइल नंबर</label>
+      <input type="text" id="mobile" placeholder="मोबाइल नंबर (10 अंक)" maxlength="10" required />
+
+      <label for="pariwarSankhya" class="visually-hidden">परिवार संख्या</label>
+      <input type="text" id="pariwarSankhya" placeholder="परिवार संख्या" required />
+
+      <button type="submit" id="addFamilyBtn">परिवार जोड़ें</button>
+    </form>
+  </div>
+  
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-menu">
+    <button onclick="location.href='../dashboard/dashboard.html'">
+      <span>🏠</span>
+      <small>Home</small>
+    </button>
+    <button onclick="location.href='../addFamily/family_form_page.html'">
+      <span>➕</span>
+      <small>Add</small>
+    </button>
+    <button onclick="location.href='../showSurvey/show_survey.html'">
+      <span>📄</span>
+      <small>Show</small>
+    </button>
+  </div>
+
+
+  <noscript>
+    <p style="color: red; text-align: center;">⚠️ इस पेज को चलाने के लिए JavaScript आवश्यक है।</p>
+  </noscript>
+
+  <script type="module" src="family_form.js"></script>
+</body>
+</html>

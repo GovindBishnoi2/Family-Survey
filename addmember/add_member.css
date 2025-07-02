@@ -1,0 +1,144 @@
+/* 🌐 Reset & Base */
+body {
+  margin: 0;
+  padding: 0 0 70px;
+  font-family: system-ui, sans-serif;
+  background-color: #f0f0f0;
+}
+
+/* 🔷 Title */
+h2 {
+  text-align: center;
+  margin: 15px 0 10px;
+  color: #222;
+  font-size: 22px;
+}
+
+/* 📦 Form Card Container */
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 📝 Input + Select */
+form input,
+form select {
+  width: 100%;
+  padding: 11px;
+  margin-top: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus,
+form select:focus {
+  outline: none;
+  border-color: #2196f3;
+  box-shadow: 0 0 4px rgba(33, 150, 243, 0.4);
+}
+
+/* ✅ Submit Button */
+form button[type="submit"] {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  background: #2196f3;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+  background: #1976d2;
+}
+
+form button[type="submit"]:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+/* 📱 Bottom Menu */
+.bottom-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #e0e0e0;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top: 1px solid #ccc;
+  z-index: 1000;
+}
+
+.bottom-menu button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  padding: 6px 10px;
+  transition: background 0.3s ease;
+}
+
+.bottom-menu button:hover,
+.bottom-menu button:active {
+  background-color: #dcdcdc;
+  border-radius: 4px;
+}
+
+/* 🧾 Toast */
+#toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  display: none;
+  z-index: 999;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#toast.show {
+  display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+/* 📱 Responsive */
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  form input,
+  form select,
+  form button {
+    font-size: 14px;
+  }
+
+  .bottom-menu button {
+    font-size: 14px;
+  }
+}
