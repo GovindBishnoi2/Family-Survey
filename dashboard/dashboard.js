@@ -49,7 +49,6 @@ onAuthStateChanged(auth, (user) => {
       const username = data.username || "User";
       document.getElementById("displayUsername").textContent = username;
       document.getElementById("displayEmail").textContent = data.email || "--";
-      document.getElementById("user-avatar").src = generateAvatarURL(username);
     }
   });
 
