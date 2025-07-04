@@ -118,12 +118,6 @@ onAuthStateChanged(auth, (user) => {
   });
 });
 
-// Avatar with fallback
-function generateAvatarURL(name) {
-  const safe = (name || "User").trim().replace(/\s+/g, "+");
-  return `https://ui-avatars.com/api/?name=${safe}&background=2196f3&color=fff&rounded=true`;
-}
-
 // Render Search Results (Clickable)
 function renderSearch(families, outputDiv) {
   outputDiv.innerHTML = "";
