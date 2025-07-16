@@ -1,4 +1,5 @@
-/* ========== 🌐 RESET ========== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,103 +7,108 @@
 }
 
 body {
-  font-family: sans-serif;
-  background: #f5f5f5;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f8f9fa, #e3f2fd);
   padding: 20px;
   padding-bottom: 120px;
   color: #333;
 }
 
-/* ========== 🧱 BASE LAYOUT ========== */
 .dashboard {
-  max-width: 550px;
+  max-width: 600px;
   margin: 0 auto;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   gap: 30px;
+  border: 1px solid #d7d7d7;
 }
 
-/* ========== 👤 SECTION 1: Profile ========== */
-.profile-section h2 {
-  margin-bottom: 10px;
-  font-size: 20px;
-  color: #1976d2;
+/* Profile Section */
+.profile-section h2,
+.stats-section h2,
+.search-section h2,
+.results-section h2 {
   text-align: center;
+  color: #0d47a1;
+  font-size: 22px;
 }
 
 .profile {
-  text-align: center;
   background: #e8f0fe;
-  padding: 12px;
-  border-radius: 8px;
-}
-
-/* ========== 📊 SECTION 2: Stats ========== */
-.stats-section h2 {
-  font-size: 20px;
-  color: #1976d2;
+  padding: 15px;
+  border-radius: 12px;
   text-align: center;
-  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(13, 71, 161, 0.2);
 }
 
+/* Stats Cards */
 .stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stat-box {
+  background: linear-gradient(to right, #64b5f6, #42a5f5);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(33, 150, 243, 0.4);
+}
+
+/* Search Section */
+.search {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.stat-box {
-  background: #e0e0e0;
-  padding: 12px;
-  border-radius: 6px;
-  text-align: center;
-  font-weight: bold;
-}
-
-/* ========== 🔍 SECTION 3: Search ========== */
-.search-section h2 {
-  font-size: 20px;
-  color: #1976d2;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.search {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .search input {
   width: 100%;
-  padding: 10px;
-  font-size: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.search input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #64b5f6;
 }
 
 .search button {
-  width: 100%;
-  padding: 10px;
+  padding: 12px;
   background: #f44336;
   color: white;
-  font-weight: bold;
   border: none;
-  border-radius: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-/* ========== ⌕ SECTION 4: Search Results ========== */
-.results-section h2 {
-  font-size: 20px;
-  color: #1976d2;
-  text-align: center;
-  margin-bottom: 10px;
+.search button:hover {
+  background: #d32f2f;
 }
 
+/* Search Results */
 #searchResults {
   display: flex;
   flex-direction: column;
@@ -110,20 +116,18 @@ body {
 }
 
 #searchResults .stat-box {
-  background: #d0f0d0;
+  background: #ffe082;
+  color: #333;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
 }
 
 #searchResults .stat-box:hover {
-  background: #b6e6b6;
+  background: #ffca28;
+  transform: scale(1.02);
 }
 
-/* ========== ⏳ SECTION 5: Loader ========== */
-.loader-section {
-  text-align: center;
-}
-
+/* Loader */
 .loader {
   border: 6px solid #f3f3f3;
   border-top: 6px solid #1976d2;
@@ -133,21 +137,17 @@ body {
   animation: spin 1s linear infinite;
   margin: 30px auto 10px auto;
 }
-
 @keyframes spin {
   0% { transform: rotate(0); }
   100% { transform: rotate(360deg); }
 }
-
 .loading-text {
   text-align: center;
   font-size: 14px;
-  color: #666;
+  color: #555;
 }
 
-/* ========== 🔔 SECTION 6: Toast Notification ========== */
-.toast-section {}
-
+/* Toast Notification */
 .toast {
   position: fixed;
   bottom: 90px;
@@ -155,40 +155,40 @@ body {
   transform: translateX(-50%);
   background: #333;
   color: white;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   display: none;
   z-index: 1000;
 }
-
 .toast.show {
   display: block;
 }
 
-/* ========== ⬇️ SECTION 7: Bottom Navigation Menu ========== */
+/* Bottom Navigation */
 .bottom-menu {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: #d7d7d7;
+  background: #e0e0e0;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
+  padding: 12px 0;
   border-top: 1px solid #bbb;
+  z-index: 100;
 }
 
 .bottom-menu button {
   background: none;
   border: none;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
   color: #000;
+  cursor: pointer;
   transition: color 0.3s;
 }
-
 .bottom-menu button:hover {
   color: #1976d2;
 }
