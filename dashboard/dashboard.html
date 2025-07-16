@@ -13,11 +13,20 @@
 
     <!-- 👤 SECTION 1: User Profile -->
     <section class="profile-section">
-      <div class="profile">
-        <p><strong>Username:</strong> <span id="displayUsername">--</span></p>
-        <p><strong>Email:</strong> <span id="displayEmail">--</span></p>
-      </div>
-    </section>
+  <div class="profile">
+    <img src="default_avatar.png" alt="Profile" />
+    
+    <label><strong>Username:</strong></label>
+    <input type="text" id="editUsername" disabled />
+
+    <p><strong>Email:</strong> <span id="displayEmail">--</span></p>
+    <p><strong>Joined:</strong> <span id="joinedDate">--</span></p>
+
+    <button id="editBtn">✏️ Edit</button>
+    <button id="saveBtn" style="display:none;">💾 Save</button>
+  </div>
+</section>
+
 
     <!-- 📊 SECTION 2: Stats Summary -->
 <section class="stats-section">
