@@ -1,15 +1,10 @@
-// 🚀 Firebase SDKs Import
+// 🔌 Firebase SDK imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
-  getAuth,
-  onAuthStateChanged,
-  signOut
+  getAuth, onAuthStateChanged, signOut
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
-  getDatabase,
-  ref,
-  get,
-  onValue
+  getDatabase, ref, get, onValue, update
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 // 🔐 Firebase Config
@@ -23,27 +18,17 @@ const firebaseConfig = {
   appId: "1:128465029455:web:5fe5bf87f0364edb631d3a"
 };
 
-// 🔧 Firebase Initialization
+// 🔧 Firebase Init
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
-// 🌐 DOM Elements
 const loader = document.getElementById("loader");
 const loadingText = document.getElementById("loadingText");
-const toast = document.getElementById("toast");
-const searchInput = document.getElementById("searchInput");
-const searchResults = document.getElementById("searchResults");
-const clearBtn = document.getElementById("clearBtn");
-const logoutBtn = document.getElementById("logoutBtn");
-
-// 🔃 Loader On at Start
 showLoader(loader, loadingText);
 
-// 🏠 All Families Store
 let allFamilies = [];
 
-// 🔐 Authentication Listener
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     window.location.href = "../index.html";
@@ -52,16 +37,47 @@ onAuthStateChanged(auth, (user) => {
 
   const uid = user.uid;
 
-  // 👤 Load User Profile
+  // 👉 Editable Profile Section Elements
+  const displayUsername = document.getElementById("editUsername");
+  const displayEmail = document.getElementById("displayEmail");
+  const joinedDate = document.getElementById("joinedDate");
+  const editBtn = document.getElementById("editBtn");
+  const saveBtn = document.getElementById("saveBtn");
+
+  joinedDate.textContent = new Date(user.metadata.creationTime).toLocaleDateString();
+
+  // 👤 Load user data from Realtime DB
   get(ref(db, "users/" + uid)).then((snap) => {
     if (snap.exists()) {
       const data = snap.val();
-      document.getElementById("displayUsername").textContent = data.username || "User";
-      document.getElementById("displayEmail").textContent = data.email || "--";
+      displayUsername.value = data.username || "";
+      displayEmail.textContent = data.email || user.email;
     }
   });
 
-  // 📊 Load Stats (Families + Members)
+  // ✏️ Enable Editing
+  editBtn.addEventListener("click", () => {
+    displayUsername.disabled = false;
+    saveBtn.style.display = "inline-block";
+    editBtn.style.display = "none";
+  });
+
+  // 💾 Save Updated Name
+  saveBtn.addEventListener("click", async () => {
+    const newName = displayUsername.value.trim();
+    if (!newName) {
+      showToast("❌ नाम खाली नहीं हो सकता");
+      return;
+    }
+    await update(ref(db, "users/" + uid), { username: newName });
+    showToast("✅ नाम अपडेट हो गया");
+
+    displayUsername.disabled = true;
+    saveBtn.style.display = "none";
+    editBtn.style.display = "inline-block";
+  });
+
+  // 📊 Stats Load
   const familiesRef = ref(db, `surveys/families/${uid}`);
   const membersRef = ref(db, `surveys/members/${uid}`);
 
@@ -96,7 +112,11 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("totalFemales").textContent = female;
   });
 
-  // 🔍 Search Input Handler
+  // 🔍 Search Functionality
+  const searchInput = document.getElementById("searchInput");
+  const searchResults = document.getElementById("searchResults");
+  const clearBtn = document.getElementById("clearBtn");
+
   searchInput?.addEventListener("input", () => {
     const q = searchInput.value.toLowerCase().trim();
     if (!q) return renderSearch([], searchResults);
@@ -107,21 +127,20 @@ onAuthStateChanged(auth, (user) => {
     renderSearch(filtered, searchResults);
   });
 
-  // ❌ Clear Button
   clearBtn?.addEventListener("click", () => {
     searchInput.value = "";
     renderSearch([], searchResults);
   });
 
-  // 🚪 Logout Button
-  logoutBtn?.addEventListener("click", async () => {
+  // 🚪 Logout
+  document.getElementById("logoutBtn")?.addEventListener("click", async () => {
     await signOut(auth);
     showToast("🚪 लॉग आउट किया गया");
     window.location.href = "../index.html";
   });
 });
 
-// 🔁 Render Search Results
+// 🔁 Search Results Renderer
 function renderSearch(families, outputDiv) {
   outputDiv.innerHTML = "";
   if (!families.length) {
@@ -145,7 +164,7 @@ function renderSearch(families, outputDiv) {
   });
 }
 
-// 🎯 Loader Control
+// ⏳ Loader Handlers
 function hideLoader(loader, text) {
   if (loader) loader.style.display = "none";
   if (text) text.style.display = "none";
@@ -155,8 +174,9 @@ function showLoader(loader, text) {
   if (text) text.style.display = "block";
 }
 
-// 🔔 Toast Alert System
+// 🔔 Toast Alerts
 function showToast(message, duration = 3000) {
+  const toast = document.getElementById("toast");
   if (!toast) return;
   toast.textContent = message;
   toast.classList.add("show");
@@ -165,7 +185,7 @@ function showToast(message, duration = 3000) {
   }, duration);
 }
 
-// 🌐 Network Alerts
+// 🌐 Network Status
 window.addEventListener("offline", () => {
   showToast("❌ इंटरनेट कनेक्शन नहीं है", 5000);
 });
