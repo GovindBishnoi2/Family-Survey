@@ -1,4 +1,3 @@
-/* RESET & BASE */
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +13,6 @@ body {
   font-weight: bold;
 }
 
-/* DASHBOARD BOX */
 .dashboard {
   max-width: 500px;
   margin: 20px auto;
@@ -24,21 +22,12 @@ body {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
 }
 
-/* PROFILE */
 .profile {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.profile img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-/* STATS */
 .stats {
   margin-top: 20px;
   display: grid;
@@ -57,7 +46,6 @@ body {
   background: #e3f2fd;
 }
 
-/* SEARCH */
 .search-box {
   margin-top: 20px;
   display: flex;
@@ -91,7 +79,6 @@ body {
   background: #d32f2f;
 }
 
-/* BOTTOM MENU */
 .bottom-menu {
   position: fixed;
   bottom: 0;
@@ -113,7 +100,6 @@ body {
   cursor: pointer;
 }
 
-/* LOADER */
 .loader {
   border: 6px solid #f3f3f3;
   border-top: 6px solid #1976d2;
@@ -136,7 +122,6 @@ body {
   margin-bottom: 30px;
 }
 
-/* TOAST */
 .toast {
   position: fixed;
   bottom: 80px;
@@ -158,7 +143,6 @@ body {
   transform: translateX(-50%) translateY(-10px);
 }
 
-/* RESPONSIVE */
 @media (max-width: 480px) {
   .search-box {
     flex-direction: column;
