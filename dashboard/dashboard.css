@@ -2,35 +2,32 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background: #f4f6f8;
+  font-family: sans-serif;
+  background: #f5f5f5;
   padding: 20px;
-  padding-bottom: 100px;
+  padding-bottom: 120px;
   color: #333;
-  font-weight: bold;
 }
 
 .dashboard {
   max-width: 500px;
   margin: 0 auto;
-  background: #fff;
+  background: white;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* PROFILE */
 .profile {
   text-align: center;
 }
 
-/* STATS → All boxes one below other */
+/* Stats One by One Vertically */
 .stats {
   display: flex;
   flex-direction: column;
@@ -38,26 +35,20 @@ body {
 }
 
 .stat-box {
-  background: #f0f0f0;
+  background: #e0e0e0;
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 6px;
   text-align: center;
-  transition: background 0.3s;
 }
 
-.stat-box:hover {
-  background: #e3f2fd;
-}
-
-/* SEARCH → Full width vertical */
-.search-box {
+/* Search Vertically */
+.search {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.search-box input,
-.search-box button {
+.search input {
   width: 100%;
   padding: 10px;
   font-size: 15px;
@@ -65,26 +56,24 @@ body {
   border-radius: 6px;
 }
 
-.search-box button {
+.search button {
+  width: 100%;
+  padding: 10px;
   background: #f44336;
   color: white;
   font-weight: bold;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s;
 }
 
-.search-box button:hover {
-  background: #d32f2f;
-}
-
-/* RESULTS VERTICAL */
 #searchResults {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
-/* LOADER */
+/* Loader Spinner */
 .loader {
   border: 6px solid #f3f3f3;
   border-top: 6px solid #1976d2;
@@ -102,45 +91,21 @@ body {
 
 .loading-text {
   text-align: center;
+  font-size: 14px;
   color: #666;
-  font-size: 14px;
-  margin-bottom: 30px;
 }
 
-/* TOAST */
-.toast {
-  position: fixed;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #323232;
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-size: 14px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.3s ease;
-  z-index: 9999;
-}
-
-.toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-10px);
-}
-
-/* BOTTOM MENU */
+/* Bottom Menu Fixed */
 .bottom-menu {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: #e0e0e0;
+  background: #d7d7d7;
   display: flex;
   justify-content: space-around;
   padding: 10px 0;
-  border-top: 1px solid #ccc;
-  z-index: 1000;
+  border-top: 1px solid #bbb;
 }
 
 .bottom-menu button {
@@ -148,6 +113,23 @@ body {
   border: none;
   font-size: 16px;
   font-weight: bold;
-  color: #333;
   cursor: pointer;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: none;
+}
+
+.toast.show {
+  display: block;
 }
