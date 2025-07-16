@@ -1,3 +1,4 @@
+/* ========== 🌐 RESET ========== */
 * {
   margin: 0;
   padding: 0;
@@ -12,22 +13,41 @@ body {
   color: #333;
 }
 
+/* ========== 🧱 BASE LAYOUT ========== */
 .dashboard {
-  max-width: 500px;
+  max-width: 550px;
   margin: 0 auto;
   background: white;
   padding: 20px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
+}
+
+/* ========== 👤 SECTION 1: Profile ========== */
+.profile-section h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #1976d2;
+  text-align: center;
 }
 
 .profile {
   text-align: center;
+  background: #e8f0fe;
+  padding: 12px;
+  border-radius: 8px;
 }
 
-/* Stats One by One Vertically */
+/* ========== 📊 SECTION 2: Stats ========== */
+.stats-section h2 {
+  font-size: 20px;
+  color: #1976d2;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 .stats {
   display: flex;
   flex-direction: column;
@@ -39,9 +59,17 @@ body {
   padding: 12px;
   border-radius: 6px;
   text-align: center;
+  font-weight: bold;
 }
 
-/* Search Vertically */
+/* ========== 🔍 SECTION 3: Search ========== */
+.search-section h2 {
+  font-size: 20px;
+  color: #1976d2;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
 .search {
   display: flex;
   flex-direction: column;
@@ -67,13 +95,35 @@ body {
   cursor: pointer;
 }
 
+/* ========== ⌕ SECTION 4: Search Results ========== */
+.results-section h2 {
+  font-size: 20px;
+  color: #1976d2;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 #searchResults {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* Loader Spinner */
+#searchResults .stat-box {
+  background: #d0f0d0;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#searchResults .stat-box:hover {
+  background: #b6e6b6;
+}
+
+/* ========== ⏳ SECTION 5: Loader ========== */
+.loader-section {
+  text-align: center;
+}
+
 .loader {
   border: 6px solid #f3f3f3;
   border-top: 6px solid #1976d2;
@@ -95,7 +145,28 @@ body {
   color: #666;
 }
 
-/* Bottom Menu Fixed */
+/* ========== 🔔 SECTION 6: Toast Notification ========== */
+.toast-section {}
+
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: none;
+  z-index: 1000;
+}
+
+.toast.show {
+  display: block;
+}
+
+/* ========== ⬇️ SECTION 7: Bottom Navigation Menu ========== */
 .bottom-menu {
   position: fixed;
   bottom: 0;
@@ -114,22 +185,10 @@ body {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  color: #000;
+  transition: color 0.3s;
 }
 
-/* Toast Notification */
-.toast {
-  position: fixed;
-  bottom: 90px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #333;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-  display: none;
-}
-
-.toast.show {
-  display: block;
+.bottom-menu button:hover {
+  color: #1976d2;
 }
