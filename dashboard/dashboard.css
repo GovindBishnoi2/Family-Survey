@@ -192,3 +192,24 @@ body {
 .bottom-menu button:hover {
   color: #1976d2;
 }
+
+.profile img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #1976d2;
+  margin-bottom: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.profile input[type="text"] {
+  width: 80%;
+  margin: 8px auto;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  text-align: center;
+  font-size: 16px;
+  background: #fff;
+}
