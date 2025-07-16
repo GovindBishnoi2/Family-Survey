@@ -13,19 +13,25 @@
 
     <!-- 👤 SECTION 1: User Profile -->
     <section class="profile-section">
-      <div class="profile">
-        <img src="default-avatar.png" alt="Profile" />
+  <div class="profile">
 
-        <label><strong>Username:</strong></label><br>
-        <input type="text" id="editUsername" disabled />
+    <!-- 🔘 Profile Picture as Button -->
+    <img id="profileToggleBtn" src="default-avatar.png" alt="Profile Photo" title="प्रोफ़ाइल देखने के लिए क्लिक करें" style="cursor: pointer;" />
 
-        <p><strong>Email:</strong> <span id="displayEmail">--</span></p>
-        <p><strong>Joined:</strong> <span id="joinedDate">--</span></p>
+    <!-- 👇 Hidden Profile Details -->
+    <div id="profileDetails" style="display: none; margin-top: 12px;">
+      <label><strong>Username:</strong></label><br>
+      <input type="text" id="editUsername" disabled />
 
-        <button id="editBtn">✏️ Edit</button>
-        <button id="saveBtn" style="display:none;">💾 Save</button>
-      </div>
-    </section>
+      <p><strong>Email:</strong> <span id="displayEmail">--</span></p>
+      <p><strong>Joined:</strong> <span id="joinedDate">--</span></p>
+
+      <button id="editBtn">✏️ Edit</button>
+      <button id="saveBtn" style="display:none;">💾 Save</button>
+    </div>
+
+  </div>
+</section>
 
     <!-- 📊 SECTION 2: Stats Summary -->
     <section class="stats-section">
