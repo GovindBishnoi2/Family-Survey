@@ -1,3 +1,4 @@
+/* RESET & BASE */
 * {
   margin: 0;
   padding: 0;
@@ -17,24 +18,23 @@ body {
   max-width: 500px;
   margin: 0 auto;
   background: #fff;
-  padding: 20px 18px;
+  padding: 20px;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 20px; /* 👉 spacing between sections */
-  align-items: stretch;
+  gap: 20px;
 }
 
-/* USER PROFILE */
+/* PROFILE */
 .profile {
   text-align: center;
 }
 
-/* STATS */
+/* STATS → All Boxes Vertical */
 .stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
 
@@ -42,24 +42,23 @@ body {
   background: #f0f0f0;
   padding: 12px;
   border-radius: 8px;
-  transition: background 0.3s;
   text-align: center;
+  transition: background 0.3s;
 }
 
 .stat-box:hover {
   background: #e3f2fd;
 }
 
-/* SEARCH */
+/* SEARCH BAR FULL WIDTH */
 .search-box {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 10px;
-  justify-content: center;
 }
 
 .search-box input {
-  flex: 1 1 250px;
+  width: 100%;
   padding: 10px;
   font-size: 15px;
   border: 1px solid #ccc;
@@ -67,7 +66,8 @@ body {
 }
 
 .search-box button {
-  padding: 10px 14px;
+  width: 100%;
+  padding: 10px;
   background: #f44336;
   color: white;
   border: none;
@@ -82,12 +82,11 @@ body {
   background: #d32f2f;
 }
 
-/* SEARCH RESULTS */
+/* RESULTS VERTICALLY */
 #searchResults {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 10px;
 }
 
 /* LOADER */
@@ -157,20 +156,3 @@ body {
   color: #333;
   cursor: pointer;
 }
-
-/* RESPONSIVE DESIGN */
-@media (max-width: 480px) {
-  .stats {
-    grid-template-columns: 1fr;
-  }
-
-  .search-box {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .search-box input,
-  .search-box button {
-    width: 100%;
-  }
-  }
