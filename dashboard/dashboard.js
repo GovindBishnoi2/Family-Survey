@@ -1,12 +1,18 @@
+// 🚀 Firebase SDKs Import
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
-  getAuth, onAuthStateChanged, signOut
+  getAuth,
+  onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
-  getDatabase, ref, get, onValue
+  getDatabase,
+  ref,
+  get,
+  onValue
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-// Firebase Config
+// 🔐 Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyBrV_RYGOZqu_PBVDcbBJjmXxmUX4NEc5w",
   authDomain: "gvmm-57297.firebaseapp.com",
@@ -17,16 +23,27 @@ const firebaseConfig = {
   appId: "1:128465029455:web:5fe5bf87f0364edb631d3a"
 };
 
+// 🔧 Firebase Initialization
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
-let allFamilies = [];
-
+// 🌐 DOM Elements
 const loader = document.getElementById("loader");
 const loadingText = document.getElementById("loadingText");
+const toast = document.getElementById("toast");
+const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
+const clearBtn = document.getElementById("clearBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+
+// 🔃 Loader On at Start
 showLoader(loader, loadingText);
 
+// 🏠 All Families Store
+let allFamilies = [];
+
+// 🔐 Authentication Listener
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     window.location.href = "../index.html";
@@ -35,10 +52,7 @@ onAuthStateChanged(auth, (user) => {
 
   const uid = user.uid;
 
-  const searchInput = document.getElementById("searchInput");
-  const searchResults = document.getElementById("searchResults");
-  const clearBtn = document.getElementById("clearBtn");
-
+  // 👤 Load User Profile
   get(ref(db, "users/" + uid)).then((snap) => {
     if (snap.exists()) {
       const data = snap.val();
@@ -47,6 +61,7 @@ onAuthStateChanged(auth, (user) => {
     }
   });
 
+  // 📊 Load Stats (Families + Members)
   const familiesRef = ref(db, `surveys/families/${uid}`);
   const membersRef = ref(db, `surveys/members/${uid}`);
 
@@ -81,6 +96,7 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("totalFemales").textContent = female;
   });
 
+  // 🔍 Search Input Handler
   searchInput?.addEventListener("input", () => {
     const q = searchInput.value.toLowerCase().trim();
     if (!q) return renderSearch([], searchResults);
@@ -91,18 +107,21 @@ onAuthStateChanged(auth, (user) => {
     renderSearch(filtered, searchResults);
   });
 
+  // ❌ Clear Button
   clearBtn?.addEventListener("click", () => {
     searchInput.value = "";
     renderSearch([], searchResults);
   });
 
-  document.getElementById("logoutBtn")?.addEventListener("click", async () => {
+  // 🚪 Logout Button
+  logoutBtn?.addEventListener("click", async () => {
     await signOut(auth);
     showToast("🚪 लॉग आउट किया गया");
     window.location.href = "../index.html";
   });
 });
 
+// 🔁 Render Search Results
 function renderSearch(families, outputDiv) {
   outputDiv.innerHTML = "";
   if (!families.length) {
@@ -126,6 +145,7 @@ function renderSearch(families, outputDiv) {
   });
 }
 
+// 🎯 Loader Control
 function hideLoader(loader, text) {
   if (loader) loader.style.display = "none";
   if (text) text.style.display = "none";
@@ -135,8 +155,8 @@ function showLoader(loader, text) {
   if (text) text.style.display = "block";
 }
 
+// 🔔 Toast Alert System
 function showToast(message, duration = 3000) {
-  const toast = document.getElementById("toast");
   if (!toast) return;
   toast.textContent = message;
   toast.classList.add("show");
@@ -145,6 +165,7 @@ function showToast(message, duration = 3000) {
   }, duration);
 }
 
+// 🌐 Network Alerts
 window.addEventListener("offline", () => {
   showToast("❌ इंटरनेट कनेक्शन नहीं है", 5000);
 });
