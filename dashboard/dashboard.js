@@ -37,33 +37,46 @@ onAuthStateChanged(auth, (user) => {
 
   const uid = user.uid;
 
-  // 👉 Editable Profile Section Elements
+  // 🧩 Profile DOM elements
   const displayUsername = document.getElementById("editUsername");
   const displayEmail = document.getElementById("displayEmail");
   const joinedDate = document.getElementById("joinedDate");
   const editBtn = document.getElementById("editBtn");
   const saveBtn = document.getElementById("saveBtn");
 
+  // 🖼️ Profile toggle logic
+  const profileToggleBtn = document.getElementById("profileToggleBtn");
+  const profileDetails = document.getElementById("profileDetails");
+
+  if (profileToggleBtn && profileDetails) {
+    let profileVisible = false;
+    profileToggleBtn.addEventListener("click", () => {
+      profileVisible = !profileVisible;
+      profileDetails.style.display = profileVisible ? "block" : "none";
+    });
+  }
+
+  // 📅 Show joined date
   joinedDate.textContent = new Date(user.metadata.creationTime).toLocaleDateString();
 
-  // 👤 Load user data from Realtime DB
+  // 👤 Load profile from DB
   get(ref(db, "users/" + uid)).then((snap) => {
     if (snap.exists()) {
       const data = snap.val();
-      displayUsername.value = data.username || "";
-      displayEmail.textContent = data.email || user.email;
+      if (displayUsername) displayUsername.value = data.username || "";
+      if (displayEmail) displayEmail.textContent = data.email || user.email;
     }
   });
 
-  // ✏️ Enable Editing
-  editBtn.addEventListener("click", () => {
+  // ✏️ Edit username
+  editBtn?.addEventListener("click", () => {
     displayUsername.disabled = false;
     saveBtn.style.display = "inline-block";
     editBtn.style.display = "none";
   });
 
-  // 💾 Save Updated Name
-  saveBtn.addEventListener("click", async () => {
+  // 💾 Save username
+  saveBtn?.addEventListener("click", async () => {
     const newName = displayUsername.value.trim();
     if (!newName) {
       showToast("❌ नाम खाली नहीं हो सकता");
@@ -77,26 +90,23 @@ onAuthStateChanged(auth, (user) => {
     editBtn.style.display = "inline-block";
   });
 
-  // 📊 Stats Load
+  // 📊 Load stats
   const familiesRef = ref(db, `surveys/families/${uid}`);
   const membersRef = ref(db, `surveys/members/${uid}`);
 
   onValue(familiesRef, (snap) => {
     allFamilies = [];
     let count = 0;
-
     snap.forEach((child) => {
       allFamilies.push({ ...child.val(), key: child.key });
       count++;
     });
-
     document.getElementById("totalFamilies").textContent = count;
     hideLoader(loader, loadingText);
   });
 
   onValue(membersRef, (snap) => {
     let total = 0, male = 0, female = 0;
-
     snap.forEach(famSnap => {
       const members = famSnap.val();
       for (const memberId in members) {
@@ -112,7 +122,7 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("totalFemales").textContent = female;
   });
 
-  // 🔍 Search Functionality
+  // 🔍 Search
   const searchInput = document.getElementById("searchInput");
   const searchResults = document.getElementById("searchResults");
   const clearBtn = document.getElementById("clearBtn");
@@ -140,7 +150,7 @@ onAuthStateChanged(auth, (user) => {
   });
 });
 
-// 🔁 Search Results Renderer
+// 🔁 Render search results
 function renderSearch(families, outputDiv) {
   outputDiv.innerHTML = "";
   if (!families.length) {
@@ -164,7 +174,7 @@ function renderSearch(families, outputDiv) {
   });
 }
 
-// ⏳ Loader Handlers
+// ⏳ Loader handlers
 function hideLoader(loader, text) {
   if (loader) loader.style.display = "none";
   if (text) text.style.display = "none";
@@ -174,7 +184,7 @@ function showLoader(loader, text) {
   if (text) text.style.display = "block";
 }
 
-// 🔔 Toast Alerts
+// 🔔 Toast
 function showToast(message, duration = 3000) {
   const toast = document.getElementById("toast");
   if (!toast) return;
@@ -185,7 +195,7 @@ function showToast(message, duration = 3000) {
   }, duration);
 }
 
-// 🌐 Network Status
+// 🌐 Internet status
 window.addEventListener("offline", () => {
   showToast("❌ इंटरनेट कनेक्शन नहीं है", 5000);
 });
