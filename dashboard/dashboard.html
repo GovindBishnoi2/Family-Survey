@@ -8,39 +8,58 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
+
   <main class="dashboard">
-    <!-- 👤 User Info -->
-    <section class="profile">
-      <p><strong>Username:</strong> <span id="displayUsername">--</span></p>
-      <p><strong>Email:</strong> <span id="displayEmail">--</span></p>
+
+    <!-- 👤 SECTION 1: User Profile -->
+    <section class="profile-section">
+      <h2>👤 यूज़र प्रोफ़ाइल</h2>
+      <div class="profile">
+        <p><strong>Username:</strong> <span id="displayUsername">--</span></p>
+        <p><strong>Email:</strong> <span id="displayEmail">--</span></p>
+      </div>
     </section>
 
-    <!-- 🔔 Toast -->
-    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
-
-    <!-- 📊 Stats -->
-    <section class="stats">
-      <div class="stat-box"><strong>Total Families</strong><br><span id="totalFamilies">0</span></div>
-      <div class="stat-box"><strong>Total Members</strong><br><span id="totalMembers">0</span></div>
-      <div class="stat-box"><strong>Male</strong><br><span id="totalMales">0</span></div>
-      <div class="stat-box"><strong>Female</strong><br><span id="totalFemales">0</span></div>
+    <!-- 📊 SECTION 2: Stats Summary -->
+    <section class="stats-section">
+      <h2>📊 आँकड़े</h2>
+      <div class="stats">
+        <div class="stat-box"><strong>Total Families</strong><br><span id="totalFamilies">0</span></div>
+        <div class="stat-box"><strong>Total Members</strong><br><span id="totalMembers">0</span></div>
+        <div class="stat-box"><strongMale</strong><br><span id="totalMales">0</span></div>
+        <div class="stat-box"><strong>Female</strong><br><span id="totalFemales">0</span></div>
+      </div>
     </section>
 
-    <!-- 🔍 Search -->
-    <section class="search">
-      <input type="text" id="searchInput" placeholder="नाम या जन आधार से खोजें..." />
-      <button id="clearBtn">❌ Clear Search</button>
+    <!-- 🔍 SECTION 3: Search Functionality -->
+    <section class="search-section">
+      <h2>🔍 खोजें</h2>
+      <div class="search">
+        <input type="text" id="searchInput" placeholder="नाम या जन आधार से खोजें..." />
+        <button id="clearBtn">❌ Clear Search</button>
+      </div>
     </section>
 
-    <!-- ⌕ Results -->
-    <section id="searchResults"></section>
+    <!-- ⌕ SECTION 4: Search Results -->
+    <section class="results-section">
+      <h2>📄 परिणाम</h2>
+      <div id="searchResults"></div>
+    </section>
 
-    <!-- ⏳ Loader -->
-    <div id="loader" class="loader" role="status"></div>
-    <p id="loadingText" class="loading-text">🔄 डेटा लोड हो रहा है...</p>
+    <!-- ⏳ SECTION 5: Loader -->
+    <section class="loader-section">
+      <div id="loader" class="loader" role="status"></div>
+      <p id="loadingText" class="loading-text">🔄 डेटा लोड हो रहा है...</p>
+    </section>
+
+    <!-- 🔔 SECTION 6: Toast Notifications -->
+    <section class="toast-section">
+      <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    </section>
+
   </main>
 
-  <!-- ⬇️ Bottom Menu -->
+  <!-- ⬇️ SECTION 7: Bottom Navigation -->
   <nav class="bottom-menu">
     <button onclick="location.href='../dashboard/dashboard.html'">🏠 Home</button>
     <button onclick="location.href='../addFamily/family_form_page.html'">➕ Add</button>
@@ -48,6 +67,7 @@
     <button id="logoutBtn">🚪 Logout</button>
   </nav>
 
+  <!-- 🔌 Firebase + App Logic -->
   <script type="module" src="dashboard.js"></script>
 </body>
 </html>
