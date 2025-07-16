@@ -11,10 +11,8 @@
   <main class="dashboard">
     <!-- 👤 User Info -->
     <section class="profile">
-      <div>
-        <p><strong>Username:</strong> <span id="displayUsername">--</span></p>
-        <p><strong>Email:</strong> <span id="displayEmail">--</span></p>
-      </div>
+      <p><strong>Username:</strong> <span id="displayUsername">--</span></p>
+      <p><strong>Email:</strong> <span id="displayEmail">--</span></p>
     </section>
 
     <!-- 🔔 Toast -->
@@ -29,16 +27,16 @@
     </section>
 
     <!-- 🔍 Search -->
-    <section class="search-box">
+    <section class="search">
       <input type="text" id="searchInput" placeholder="नाम या जन आधार से खोजें..." />
-      <button id="clearBtn" title="Clear Search">❌</button>
+      <button id="clearBtn">❌ Clear Search</button>
     </section>
 
-    <!-- ⌕ Search Results -->
+    <!-- ⌕ Results -->
     <section id="searchResults"></section>
 
     <!-- ⏳ Loader -->
-    <div id="loader" class="loader" role="status" aria-live="polite"></div>
+    <div id="loader" class="loader" role="status"></div>
     <p id="loadingText" class="loading-text">🔄 डेटा लोड हो रहा है...</p>
   </main>
 
