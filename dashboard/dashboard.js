@@ -17,17 +17,15 @@ const firebaseConfig = {
   appId: "1:128465029455:web:5fe5bf87f0364edb631d3a"
 };
 
-// Init Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
-// Global Family Cache
 let allFamilies = [];
 
 const loader = document.getElementById("loader");
 const loadingText = document.getElementById("loadingText");
-showLoader(loader, loadingText); // ✅ Show early before data comes
+showLoader(loader, loadingText);
 
 onAuthStateChanged(auth, (user) => {
   if (!user) {
@@ -37,22 +35,18 @@ onAuthStateChanged(auth, (user) => {
 
   const uid = user.uid;
 
-  // DOM References
   const searchInput = document.getElementById("searchInput");
   const searchResults = document.getElementById("searchResults");
   const clearBtn = document.getElementById("clearBtn");
 
-  // Load User Info
   get(ref(db, "users/" + uid)).then((snap) => {
     if (snap.exists()) {
       const data = snap.val();
-      const username = data.username || "User";
-      document.getElementById("displayUsername").textContent = username;
+      document.getElementById("displayUsername").textContent = data.username || "User";
       document.getElementById("displayEmail").textContent = data.email || "--";
     }
   });
 
-  // Families Data + Stats
   const familiesRef = ref(db, `surveys/families/${uid}`);
   const membersRef = ref(db, `surveys/members/${uid}`);
 
@@ -66,19 +60,20 @@ onAuthStateChanged(auth, (user) => {
     });
 
     document.getElementById("totalFamilies").textContent = count;
-    hideLoader(loader, loadingText); // ✅ Hide loader only once here
+    hideLoader(loader, loadingText);
   });
 
-  // Members Stats (no hideLoader here)
   onValue(membersRef, (snap) => {
     let total = 0, male = 0, female = 0;
-    snap.forEach(fam => {
-      fam.forEach(member => {
+
+    snap.forEach(famSnap => {
+      const members = famSnap.val();
+      for (const memberId in members) {
         total++;
-        const gender = (member.val().gender || "").toLowerCase();
+        const gender = (members[memberId].gender || "").toLowerCase();
         if (gender.includes("पुरुष")) male++;
         else if (gender.includes("महिला")) female++;
-      });
+      }
     });
 
     document.getElementById("totalMembers").textContent = total;
@@ -86,30 +81,21 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("totalFemales").textContent = female;
   });
 
-  // Search Input
   searchInput?.addEventListener("input", () => {
     const q = searchInput.value.toLowerCase().trim();
-
-    if (!q) {
-      renderSearch([], searchResults);
-      return;
-    }
-
+    if (!q) return renderSearch([], searchResults);
     const filtered = allFamilies.filter(f =>
       (f.familyName && f.familyName.toLowerCase().includes(q)) ||
       (f.janAadhar && f.janAadhar.toLowerCase().includes(q))
     );
-
     renderSearch(filtered, searchResults);
   });
 
-  // ❌ Clear Button
   clearBtn?.addEventListener("click", () => {
     searchInput.value = "";
     renderSearch([], searchResults);
   });
 
-  // 🔓 Logout
   document.getElementById("logoutBtn")?.addEventListener("click", async () => {
     await signOut(auth);
     showToast("🚪 लॉग आउट किया गया");
@@ -117,10 +103,8 @@ onAuthStateChanged(auth, (user) => {
   });
 });
 
-// Render Search Results (Clickable)
 function renderSearch(families, outputDiv) {
   outputDiv.innerHTML = "";
-
   if (!families.length) {
     outputDiv.innerHTML = "<p>❌ कोई परिणाम नहीं मिला</p>";
     return;
@@ -142,7 +126,6 @@ function renderSearch(families, outputDiv) {
   });
 }
 
-// Loader utils
 function hideLoader(loader, text) {
   if (loader) loader.style.display = "none";
   if (text) text.style.display = "none";
@@ -152,7 +135,6 @@ function showLoader(loader, text) {
   if (text) text.style.display = "block";
 }
 
-// Toast Notification
 function showToast(message, duration = 3000) {
   const toast = document.getElementById("toast");
   if (!toast) return;
@@ -163,7 +145,6 @@ function showToast(message, duration = 3000) {
   }, duration);
 }
 
-// Network
 window.addEventListener("offline", () => {
   showToast("❌ इंटरनेट कनेक्शन नहीं है", 5000);
 });
