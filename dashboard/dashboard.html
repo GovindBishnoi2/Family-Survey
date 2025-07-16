@@ -13,32 +13,43 @@
 
     <!-- 👤 SECTION 1: User Profile -->
     <section class="profile-section">
-  <div class="profile">
-    <img src="default-avatar.png" alt="Profile" />
-    
-    <label><strong>Username:</strong></label>
-    <input type="text" id="editUsername" disabled />
+      <div class="profile">
+        <img src="default-avatar.png" alt="Profile" />
 
-    <p><strong>Email:</strong> <span id="displayEmail">--</span></p>
-    <p><strong>Joined:</strong> <span id="joinedDate">--</span></p>
+        <label><strong>Username:</strong></label><br>
+        <input type="text" id="editUsername" disabled />
 
-    <button id="editBtn">✏️ Edit</button>
-    <button id="saveBtn" style="display:none;">💾 Save</button>
-  </div>
-</section>
+        <p><strong>Email:</strong> <span id="displayEmail">--</span></p>
+        <p><strong>Joined:</strong> <span id="joinedDate">--</span></p>
 
+        <button id="editBtn">✏️ Edit</button>
+        <button id="saveBtn" style="display:none;">💾 Save</button>
+      </div>
+    </section>
 
     <!-- 📊 SECTION 2: Stats Summary -->
-<section class="stats-section">
-  <div class="stats">
-    <div class="stat-box"><strong>Total Families</strong><br><span id="totalFamilies">0</span></div>
-    <div class="stat-box"><strong>Total Members</strong><br><span id="totalMembers">0</span></div>
-    <div class="stat-box"><strong>Male</strong><br><span id="totalMales">0</span></div>
-    <div class="stat-box"><strong>Female</strong><br><span id="totalFemales">0</span></div>
-  </div>
-</section>
+    <section class="stats-section">
+      <div class="stats">
+        <div class="stat-box">
+          <strong>Total Families</strong><br>
+          <span id="totalFamilies">0</span>
+        </div>
+        <div class="stat-box">
+          <strong>Total Members</strong><br>
+          <span id="totalMembers">0</span>
+        </div>
+        <div class="stat-box">
+          <strong>Male</strong><br>
+          <span id="totalMales">0</span>
+        </div>
+        <div class="stat-box">
+          <strong>Female</strong><br>
+          <span id="totalFemales">0</span>
+        </div>
+      </div>
+    </section>
 
-    <!-- 🔍 SECTION 3: Search Functionality -->
+    <!-- 🔍 SECTION 3: Search -->
     <section class="search-section">
       <div class="search">
         <input type="text" id="searchInput" placeholder="नाम या जन आधार से खोजें..." />
@@ -46,7 +57,7 @@
       </div>
     </section>
 
-    <!-- ⌕ SECTION 4: Search Results -->
+    <!-- 📄 SECTION 4: Search Results -->
     <section class="results-section">
       <div id="searchResults"></div>
     </section>
@@ -64,7 +75,7 @@
 
   </main>
 
-  <!-- ⬇️ SECTION 7: Bottom Navigation -->
+  <!-- 📱 SECTION 7: Bottom Navigation -->
   <nav class="bottom-menu">
     <button onclick="location.href='../dashboard/dashboard.html'">🏠 Home</button>
     <button onclick="location.href='../addFamily/family_form_page.html'">➕ Add</button>
