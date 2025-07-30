@@ -32,17 +32,20 @@ if (loginForm) {
     window.location.href = "dashboard/dashboard.html";
   }, 2000);
 } catch (error) {
-  console.error("Firebase Login Error:", error.code, error.message); // 🔍 Debug in console
+    console.error("🔥 Firebase Login Error:", error.code, error.message); // Debug full error
+    alert(error.code + " – " + error.message); // Show exact reason for failure
 
-  if (error.code === "auth/user-not-found") {
-    showToast("❌ यह ईमेल रजिस्टर नहीं है");
-  } else if (error.code === "auth/wrong-password") {
-    showToast("❌ पासवर्ड गलत है");
-  } else if (error.code === "auth/invalid-email") {
-    showToast("❌ ईमेल फ़ॉर्मेट सही नहीं है");
-  } else {
-    showToast("⚠️ Error: " + error.message);
-  }
+    if (error.code === "auth/user-not-found") {
+        showToast("❌ यह ईमेल रजिस्टर नहीं है");
+    } else if (error.code === "auth/wrong-password") {
+        showToast("❌ पासवर्ड गलत है");
+    } else if (error.code === "auth/invalid-email") {
+        showToast("❌ ईमेल फ़ॉर्मेट सही नहीं है");
+    } else {
+        showToast("⚠️ " + error.message);
+    }
+}
+
 }
 
 
