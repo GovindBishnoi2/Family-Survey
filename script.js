@@ -45,10 +45,6 @@ if (loginForm) {
         showToast("⚠️ " + error.message);
     }
 }
-
-}
-
-
     }
   });
 }
